@@ -1,0 +1,129 @@
+*{
+	margin:0px;
+	padding:0px
+}
+
+body{
+	position: relative;
+}
+
+h1{
+	font: bold Tahoma;
+}
+
+h2{
+	font: bold Tahoma;
+}
+
+header, footer, nav{
+	display:block;
+}
+
+#big_wrapper{
+	position: relative;
+}
+
+#wrapper, #opponentWait, .mode{
+	display: none;
+}
+
+#top_header h1{
+	font-family: 'Tangerine';
+	color: #666;
+	text-shadow: 4px 4px 4px #aaa;
+	padding: 5px 0 5px 10px;
+}
+
+
+#top_menu ul a{
+	text-decoration: none;
+	color:white;
+}
+
+#top_menu{
+	background: #66CCFF;
+	color:white;
+	margin-bottom: 5px;
+}
+
+#top_menu ul li{
+	display:inline-block;
+	list-style:none;
+	padding:5px;
+	margin-bottom: 5px;
+	font:bold 14px Tahoma;
+}
+
+#top_menu a:hover{
+	cursor: pointer;
+	text-decoration: underline;
+	color:grey;
+}
+
+#form h2{
+	margin-bottom: 10px;
+}
+
+#form{
+	position: relative;
+	min-height: 100%;
+	margin:20px;
+	
+}
+
+#form li{
+	list-style: none;
+	margin: 20px;
+}
+
+#labels, #inputs, .waitingListWrapper, .waitingList, .waitingListSide, .waitingListTiming{
+	float: left;
+}
+
+.waitingListWrapper{
+	display: none;
+	width: 400px;
+}
+
+.waitingListWrapper h4{
+	clear: both;
+}
+
+.waitingList, .waitingListSide, .waitingListTiming{
+	width: 100px;
+	border: 1px solid grey;
+	margin: 5px 0px;
+	padding: 6px;
+	font-family: Sans-serif;
+}
+
+.waitingList p:hover{
+	text-decoration: underline;
+	color:white;
+	background-color: #81BEF7;
+	cursor: pointer;
+}
+
+#labels{
+	text-align: right;
+	width: 150px;
+}
+
+#inputs li{
+	margin-left: 0;
+}
+
+
+
+#the_footer{
+	position: fixed;
+	width:100%;
+	bottom: 0px;
+	padding: 10px;
+	text-align:center;
+	border-top:1px solid green;
+}
+
+.timing, .increment{
+	display: none;
+}

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <title>sChess</title>
+    <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript"> if (!window.console) console = {log: function() {}}; </script>   
+</head>
+<body>
+	<div id="big_wrapper">
+		<header id="top_header">
+			<h1>Eş Zamanlı Satranç Oyunu</h1>
+		</header>
+		<nav id="top_menu">
+			<ul>            
+				<li><a href="/">Ana sayfa</a></li>
+				<li><a href="rules.html">Kurallar</a></li>
+				<li><a href="about.html">Hakkımızda</a></li>
+				<li><a href="contacts.html">İletişim</a></li>
+			</ul>
+		</nav>
+		<div id='opponentWait'>
+			<h1>Yeni bir oyun kurdunuz.</h1>
+			<h1>Bir rakip oyuncunun oyuna katılması bekleniyor...</h1>
+		</div>
+		<div id="form">
+			<h2>Oyun kriterlerini belirleyiniz:</h2>
+			
+				<div id="labels">
+					<ul>
+						<li><b>	İsminiz : </b> </li>					
+						<li><b>Oyuncu Sayısı:</b></li>
+						<li><b class='mode'>Oyun Modu:</b></li>
+						<li><b class='side'>Tarafınız: </b>	</li>	
+						<li><b class='timing'>Oyun Süresi: </b></li>	
+						<li><b class='increment'>Artış Süresi: </b></li>	
+					</ul>
+				</div>
+			
+				<div id="inputs">
+					<form id = "selectionForm">
+					<ul>
+						<li><input id="userId" name="userId" maxlength="10"/> <input id="nickCheck" type="button" value="Kontrol Et"/></li>					
+						<li>
+							<input type="radio" id="player" name="player" value=1>Tek Oyuncu
+							<input type="radio" id="player" name="player" value=2 >İki Oyuncu
+						</li>
+						<li>
+							<input type="radio" class="mode" name="mode" value=1><span class='mode'>Öğrenme</span>
+							<input type="radio" class="mode" name="mode" value=2><span class='mode'>Oyun</span>
+						</li>
+						<li>
+							<input type="radio" class="side" name="side" value=0><span class='side'>Beyaz</span> 
+							<input type="radio" class="side" name="side" value=1><span class='side'>Siyah</span>
+						</li>
+						<li>
+							<select name="timing" class="timing">
+								<option value=0>Sınırsız</option>
+								<option value=1>1 dakika</option>
+								<option value=2>2 dakika</option>
+								<option value=3>3 dakika</option>
+								<option value=5>5 dakika</option>
+								<option value=10>10 dakika</option>
+								<option value=20>20 dakika</option>
+								<option value=30>30 dakika</option>
+								<option value=40>40 dakika</option>
+								<option value=50>50 dakika</option>
+								<option value=60>60 dakika</option>								
+							</select>
+						</li>
+						<li>
+							<select name="increment" class="increment">
+								<option value=0>Artışsız</option>
+								<option value=1>1 saniye</option>
+								<option value=2>2 saniye</option>
+								<option value=3>3 saniye</option>
+								<option value=4>4 saniye</option>
+								<option value=5>5 saniye</option>
+								<option value=6>6 saniye</option>
+								<option value=7>7 saniye</option>
+								<option value=8>8 saniye</option>
+								<option value=9>9 saniye</option>
+								<option value=10>10 saniye</option>															
+							</select>
+						</li>
+						<li>
+							<input id="start" type="submit" value="Başlat"/>
+						</li>
+					</ul>	
+					</form>				
+				</div>
+			
+				<p id='nickWarning'> </p>
+				
+				<div class="waitingListWrapper">
+					<h3>Rakip Bekleyen Oyuncular:</h3>
+					<div class="waitingList"></div>	
+					<div class="waitingListSide"></div>						
+					<div class="waitingListTiming"></div>						
+					<h4>Yukarıdaki rakip/rakiplerden birini seçerek oyunu başlatabilirsiniz veya "Başlat" düğmesine basarak yeni bir oyun kurabilirsiniz.</h4>
+				</div>
+		</div> <!--form div-->
+
+	<div id="wrapper">
+		<section id="main_section">			
+
+			<div id="FenInDiv">
+				<input type="text" id="fenIn"/>		
+				<button type="button" id="SetFen">Set FEN</button>			
+			</div>
+			<div id = "side1"></div>		
+			<div id="Board"></div>
+			<div id = "side0"></div>	
+			
+		</section>
+			
+		<aside> 
+			<div id="ThinkingTime">Bilgisayar Düşünme Süresi: <br/>
+				<select id="ThinkTimeChoice">
+					<option value="1">1s</option>
+				    <option value="2">2s</option>
+				    <option value="4">4s</option>
+				    <option value="6">6s</option>
+				    <option value="8">8s</option>
+				    <option value="10">10s</option>
+				</select>
+			</div>
+			
+			<div id="TimeInfo"><b>Oyun Süresi:</b> </div>
+
+			<div id="Timer"><span id="TimerUserName"><b>Sayaç </b></span>
+				<span id="CountDownTimer"></span>
+			</div>
+
+			<div id="TimerComp"><b>Sayaç (Bilgisayar):</b>
+				<span id="CountDownTimerComp"></span>
+			</div>
+					
+			<div id="MoveHistoryUser">
+				<label id="lbUserMoves" for="UserMoves"></label>
+				<textarea id="UserMoves" disabled></textarea>
+			</div>
+
+			<div id="MoveHistoryEngine">
+				<label id="lbEngineMoves" for="EngineMoves"></label>
+				<textarea id="EngineMoves" disabled></textarea>
+			</div>
+
+			<div id="Buttons">
+				<button type="button" id="NewGameButton">Tekrar Oyna</button><br/>
+				<button type="button" id="MoveButton">Oynat</button><br/>
+				<button type="button" id="ForwardButton">İleri al</button><br/>			
+				<button type="button" id="TakeButton">Geri al</button><br/>
+				<button type="button" id="Resign">Oyundan Çekil</button><br/>
+				<span id="GameStatus"></span>
+			</div>
+		</aside>
+	</div> <!--wrapper div-->
+
+
+
+
+
+
+
+
+		<footer id="the_footer">
+			Copyright© UBE 2015
+		</footer>
+
+	</div>
+	<script src="js/jquery-1.11.3.min.js"></script>	
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/defs.js"></script>
+	<script src="js/countDown.js"></script>
+	<script src="/js/index.js"></script>	
+	<script src="js/io.js"></script>	
+	<script src="js/board.js"></script>	
+	<script src="js/movegen.js"></script>	
+	<script src="js/makemove.js"></script>		
+	<script src="js/evaluate.js"></script>	
+	<script src="js/pvtable.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/perft.js"></script>
+	<script src="js/gui.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
